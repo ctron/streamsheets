@@ -21,6 +21,7 @@ const initContext = require('./src/context').init;
 const config = require('./src/config');
 const path = require('path');
 const process = require('process');
+const init = require('./src/init').init;
 
 const logger = LoggerFactory.createLogger('Gateway Service', process.env.GATEWAY_SERVICE_LOG_LEVEL);
 
@@ -56,6 +57,8 @@ const run = async () => {
 			process.exit(0);
 		});
 	});
+
+	await init();
 
 };
 
