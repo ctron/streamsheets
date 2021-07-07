@@ -40,7 +40,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/es/Typography/Typography';
-import {Assignment, ExitToApp, Info, Security, Settings} from '@material-ui/icons';
+import {ExitToApp, Info, Security, Settings} from '@material-ui/icons';
 
 import * as Actions from '../../actions/actions';
 import {graphManager} from '../../GraphManager';
@@ -262,22 +262,6 @@ export class SettingsMenu extends React.Component {
 							</ListItemIcon>
 							<ListItemText primary={<FormattedMessage id="Info" defaultMessage="Info"/>}/>
 						</MenuItem>
-						{ this.getLocale().toUpperCase() === 'DE' && <MenuItem dense onClick={() => this.showLicenseAgreement('DE')}>
-							<ListItemIcon>
-								<Assignment/>
-							</ListItemIcon>
-							<ListItemText primary={<FormattedMessage id="Setup.LicenseAgreement.DownloadLicenseDE"
-																	 defaultMessage="Download license"/>}/>
-						</MenuItem>
-						}
-						{ this.getLocale().toUpperCase() === 'EN' && <MenuItem dense onClick={() => this.showLicenseAgreement('EN')}>
-							<ListItemIcon>
-								<Assignment/>
-							</ListItemIcon>
-							<ListItemText primary={<FormattedMessage id="Setup.LicenseAgreement.DownloadLicenseEN"
-																	 defaultMessage="Download license"/>}/>
-						</MenuItem>
-						}
 						<Divider/>
 						<MenuItem dense onClick={this.logout}>
 							<ListItemIcon>
