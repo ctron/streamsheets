@@ -23,7 +23,6 @@ import CombinedResourceListing from '../base/listing/CombinedResourceListing';
 import { IconPause, IconPlay, IconStop } from '../icons';
 import ImportDropzone from '../ImportExport/ImportDropzone';
 import { formatDateString } from '../base/listing/Utils';
-import { ImageUploadDialog } from '@cedalo/webui-extensions';
 import { Path } from '../../helper/Path';
 import { Table, TableBody, Tabs, Tab, Fab } from '@material-ui/core';
 import TableSortHeader from '../HelperComponent/TableSortHeader';
@@ -65,7 +64,6 @@ class DashBoardComponent extends Component {
 		const sortObj = SortSelector.parseSortQuery(sort);
 
 		this.state = {
-			dialogMachineTitleImageOpen: false,
 			activeTab: 0,
 			streamSortBy: sortObj.sortBy,
 			streamSortOrder: sortObj.sortDir,
@@ -142,15 +140,11 @@ class DashBoardComponent extends Component {
 	}
 
 	onCloseDialogMachineTitleImage = () => {
-		this.setState({
-			dialogMachineTitleImageOpen: false
-		});
+		this.setState({});
 	};
 
 	onSubmitDialogMachineTitleImage = (result) => {
-		this.setState({
-			dialogMachineTitleImageOpen: false
-		});
+		this.setState({});
 		if (result.imgSrc) {
 			this.props.setTitleImage(this.state.currentMachine, result.imgSrc);
 			this.props.openDashboard(this.state.currentMachine.id);
@@ -194,7 +188,6 @@ class DashBoardComponent extends Component {
 				const machine = this.props.machines.find((m) => m.id === resourceId);
 				this.props.setMachineActive({ ...machine });
 				this.setState({
-					dialogMachineTitleImageOpen: true,
 					currentMachine: machine
 				});
 				this.props.openDashboard(machine);
@@ -603,11 +596,6 @@ class DashBoardComponent extends Component {
 								handleNew={this.props.rights.includes('machine.edit') ? this.handleNew : undefined}
 								filter={this.props.filter}
 								canEdit={canEdit}
-							/>
-							<ImageUploadDialog
-								open={this.state.dialogMachineTitleImageOpen}
-								onClose={this.onCloseDialogMachineTitleImage}
-								onSubmit={this.onSubmitDialogMachineTitleImage}
 							/>
 						</ImportDropzone>
 					</div>
